@@ -1,15 +1,17 @@
-TOP = tb_if_stage
+TOP = tb_id_stage
 
-RTL = ../rtl/if_stage.v \
-      ../rtl/imem.v
+RTL = ../rtl/id_stage.v \
+      ../rtl/regfile.v \
+      ../rtl/imm_gen.v \
+      ../rtl/decode_ctrl.v
 
-TB  = ../tb/tb_if_stage.sv
+TB  = ../tb/tb_id_stage.sv
 
 all:
 	verilator -Wall --trace --Wno-fatal \
 	  --cc $(RTL) $(TB) \
 	  --top-module $(TOP) \
-	  --exe sim_main.cpp
+	  --exe sim_main_id.cpp
 	make -C obj_dir -f V$(TOP).mk
 	./obj_dir/V$(TOP)
 
